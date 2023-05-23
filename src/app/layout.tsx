@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Employer InfoJobS',
   description: 'App for the midu\'s hackaton organized with InfoJobs in may of 2023',
   icons: {
-    icon: '/images/infojobs.svg'
+    icon: '/images/infojobsLogo.svg'
   }
 }
 
