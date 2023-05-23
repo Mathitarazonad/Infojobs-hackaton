@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+#development
+ideas.md
+
 # production
 /build
 
