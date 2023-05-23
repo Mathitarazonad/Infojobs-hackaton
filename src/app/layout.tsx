@@ -24,7 +24,6 @@ export default function RootLayout ({
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet" />
       </Head>
       <body className='bg-gray-100 font-poppins'>
-        <Header />
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 export default function Landing() {
   return (
-    <section className="p-4 home_background w-screen h-screen flex flex-col items-center justify-center gap-3 text-white text-center sm:px-[50px] lg:px-[200px]">
+    <section className="p-4 welcome_background w-screen h-screen flex flex-col items-center justify-center gap-3 text-white text-center sm:px-[50px] lg:px-[200px]">
       <h2 className='font-semibold tracking-wide text-4xl sm:text-5xl'>
         Employer Infojobs
       </h2>
