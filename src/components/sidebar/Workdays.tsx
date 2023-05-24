@@ -15,11 +15,11 @@ export default function Workdays () {
         <input type='radio' className='appearance-none border-2 border-gray-500 rounded-full p-1 checked:border-[3px] checked:border-sky-600' name='workday' value='complete' id='complete' onClick={() => handleClick(0)} />
         <label className='text-sm' htmlFor='complete'>Complete</label>
       </div>
-      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(1, selectedInput)}`} onClick={() => handleClick(1)}>
+      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(1, selectedInput)}`}>
         <input type='radio' className='appearance-none border-2 border-gray-500 rounded-full p-1 checked:border-[3px] checked:border-sky-600' name='workday' value='partial' id='partial' onClick={() => handleClick(1)} />
         <label className='text-sm' htmlFor='partial'>Partial</label>
       </div>
-      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(1, selectedInput)}`} onClick={() => handleClick(1)}>
+      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(2, selectedInput)}`}>
         <input type='radio' className='appearance-none border-2 border-gray-500 rounded-full p-1 checked:border-[3px] checked:border-sky-600' name='workday' value='undefined' id='undefined' onClick={() => handleClick(2)} />
         <label className='text-sm' htmlFor='undefined'>Undefined</label>
       </div>
