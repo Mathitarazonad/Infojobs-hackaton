@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function ExamplesLanding () {
+export default function WelcomeExamples () {
   return (
     <section className='w-full bg-none min-h-screen p-5 sm:p-[50px] lg:px-[200px] text-center flex flex-col justify-center items-center gap-4'>
       <div className='flex flex-col gap-4'>
