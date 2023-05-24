@@ -2,7 +2,7 @@ import './globals.css'
 import { Poppins } from 'next/font/google'
 
 export const metadata = {
-  title: 'Employer InfoJobS',
+  title: 'Employer InfoJobs',
   description: 'App for the midu\'s hackaton organized with InfoJobs in may of 2023',
   icons: {
     icon: '/images/infojobsLogo.svg'
