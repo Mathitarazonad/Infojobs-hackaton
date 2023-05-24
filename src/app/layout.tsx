@@ -1,3 +1,4 @@
+import FilterProvider from './contexts/FilterContext'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 
@@ -23,7 +24,9 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <body className={`${poppins.variable}` + ' bg-gray-100 font-poppins'}>
-        {children}
+        <FilterProvider>
+          {children}
+        </FilterProvider>
       </body>
     </html>
   )
