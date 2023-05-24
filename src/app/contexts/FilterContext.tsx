@@ -1,36 +1,40 @@
 'use client'
-import { Context, Dispatch, SetStateAction, createContext, useState } from 'react'
+import { Dispatch, SetStateAction, createContext, useState } from 'react'
 import { EmployerFilters } from '../types/filterTypes'
 
-interface FilterContextTypes {
+export interface FilterContextTypes {
   filterValues: EmployerFilters
-  filterOpen: boolean
   setFilterValues: Dispatch<SetStateAction<EmployerFilters>>
+  filterOpen: boolean
   setFilterOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const initialValue: EmployerFilters = {
+const initialFilterValues: EmployerFilters = {
   modality: 'any',
   contract: 'any',
   workday: 'undefined',
   languages: []
 }
 
-export const FilterContext: Context<FilterContextTypes> = createContext()
-
-export default function FilterProvider ({ children }: { children: React.ReactNode }) {
-  const [filterValues, setFilterValues] = useState<EmployerFilters>(initialValue)
-  const [filterOpen, setFilterOpen] = useState<boolean>(false)
-
-  const values = {
-    filterValues,
-    filterOpen,
-    setFilterValues,
-    setFilterOpen,
-  }
+const useValues = () => {
+  const [filterValues, setFilterValues] = useState(initialFilterValues)
+  const [filterOpen, setFilterOpen] = useState(false)
 
   return (
-    <FilterContext.Provider value={values}>
+    {
+      filterValues,
+      setFilterValues,
+      filterOpen,
+      setFilterOpen
+    }
+  )
+}
+
+export const FilterContext = createContext<FilterContextTypes | null>(null)
+
+export default function FilterProvider ({ children }: { children: React.ReactNode }) {
+  return (
+    <FilterContext.Provider value={useValues()}>
       {children}
     </FilterContext.Provider>
   )

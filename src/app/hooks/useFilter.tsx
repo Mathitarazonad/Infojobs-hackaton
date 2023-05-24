@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { FilterContext } from '../contexts/FilterContext'
+import { FilterContext, FilterContextTypes } from '../contexts/FilterContext'
 import { EmployerFilters } from '../types/filterTypes'
 
 export const useFilter = () => {
-  const { filterValues, filterOpen, setFilterValues, setFilterOpen } = useContext(FilterContext)
+  const { filterValues, filterOpen, setFilterValues, setFilterOpen } = useContext(FilterContext as React.Context<FilterContextTypes>)
 
   const changeFilterState = () => {
     setFilterOpen(prev => !prev)
