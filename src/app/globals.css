@@ -11,7 +11,7 @@
 
 
 .home_background {
-  background-image: linear-gradient(to bottom,rgba(54, 52, 52, 0.588), rgba(29, 82, 180, 0.479)), url('/images/homeBackground.jpg');
+  background-image: linear-gradient(to bottom,rgba(54, 52, 52, 0.588), rgba(29, 82, 180, 0.479)), url('/images/homeBackground.wepb');
   background-position: bottom 20% center;
   background-size: cover;
 }
