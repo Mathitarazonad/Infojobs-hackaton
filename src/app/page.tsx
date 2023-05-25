@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import JobSeekerCard from '@/components/card/JobSeekerCard'
 import Search from '@/components/search/Search'
 import MobileFilterButton from '@/components/sidebar/MobileFilterButton'
 import Sidebar from '@/components/sidebar/Sidebar'
@@ -11,7 +12,7 @@ export default function Home () {
         <section className='w-full home_background h-[200px] flex items-center justify-center md:rounded-lg'>
           <Search />
         </section>
-        <div className='flex p-5 md:py-5 md:px-0 relative'>
+        <div className='flex flex-col md:flex-row p-5 md:py-5 md:px-0 relative gap-3 md:gap-5'>
           <MobileFilterButton />
           <Sidebar />
         </div>
