@@ -5,3 +5,9 @@ export type Contract = 'full-time' | 'fixed-term' | 'any'
 export type Workday = 'complete' | 'partial' | 'undefined'
 
 export type Language = 'english' | 'spanish' | 'french' | 'german'
+
+export interface PreviousEmployment {
+  company: string
+  role: string
+  time: string
+}

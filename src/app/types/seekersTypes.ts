@@ -20,9 +20,3 @@ export interface JobSeeker {
   previousEmployments?: PreviousEmployment[]
   phone: number
 }
-
-interface PreviousEmployment {
-  company: string
-  role: string
-  time: string
-}
