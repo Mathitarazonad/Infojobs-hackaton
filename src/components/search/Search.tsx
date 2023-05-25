@@ -1,6 +1,6 @@
 export default function Search () {
   return (
-    <form className='flex flex-col gap-2 p-4'>
+    <form className='flex flex-col gap-2 p-4 w-full md:max-w-md'>
       <label className='text-white text-3xl md:text-4xl text-center font-medium' htmlFor='search'>Search for something</label>
       <div className='flex gap-3 justify-center'>
         <input type='text' placeholder='e.g. architect' id='search' autoComplete='off' className='bg-transparent text-white placeholder:text-white border-2 border-white p-2 outline-none w-full' />
