@@ -1,5 +1,7 @@
-export default function JobSeekerStatus ({ isSearchingJob }: { isSearchingJob: boolean }) {
-  if (isSearchingJob) {
+import { Status } from '@/app/types/types'
+
+export default function JobSeekerStatus ({ status }: { status: Status }) {
+  if (status === 'searching') {
     return (
       <p className='bg-green-200 text-center p-1 w-[100px] text-green-800 font-medium rounded-lg'>
         Searching

@@ -6,6 +6,7 @@ export type Workday = 'complete' | 'partial' | 'undefined'
 
 export type Language = 'english' | 'spanish' | 'french' | 'german'
 
+export type Status = 'searching' | 'hired'
 export interface PreviousEmployment {
   company: string
   role: string

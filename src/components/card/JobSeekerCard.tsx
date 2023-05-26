@@ -8,7 +8,7 @@ import JobSeekerStatus from './JobSeekerStatus'
 import CardImage from './CardImage'
 
 export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
-  const { fullname, photoURL, city, jobModality, description, isSearchingJob, role, workday, desiredContract } = data
+  const { fullname, photoURL, city, jobModality, description, status, role, workday, desiredContract } = data
 
   return (
     <article className='drop-shadow-lg w-full min-w-[300px] bg-white p-2 md:p-4 lg:p-6 flex gap-3 rounded-lg'>
@@ -16,7 +16,7 @@ export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
       <div className='flex flex-col gap-1 md:gap-[6px] w-full'>
         <div className='flex justify-between items-center'>
           <section className='flex gap-2 md:gap-4'>
-            <JobSeekerStatus isSearchingJob={isSearchingJob} />
+            <JobSeekerStatus status={status} />
             <p className='bg-sky-600 text-center p-1 w-[100px] text-white font-medium rounded-lg'>{jobModality}</p>
           </section>
           <section className='hover:scale-105 cursor-pointer'>
