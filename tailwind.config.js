@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['var(--font-poppins), sans-serif']
+      },
+      boxShadow: {
+        'autofill-without-bg': '0 0 0 40px white inset !important'
       }
     }
   },
