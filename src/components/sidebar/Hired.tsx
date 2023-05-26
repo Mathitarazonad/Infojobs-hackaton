@@ -1,5 +1,5 @@
 'use client'
-import { useRadio } from '@/app/hooks/useRadio'
+import { useRadio } from '@/hooks/useRadio'
 
 export default function Hired () {
   const { selectedInput, changeSelectedInput, checkForCheckedStyles } = useRadio()

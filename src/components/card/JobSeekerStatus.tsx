@@ -1,4 +1,4 @@
-import { Status } from '@/app/types/types'
+import { Status } from '@/types/types'
 
 export default function JobSeekerStatus ({ status }: { status: Status }) {
   if (status === 'searching') {

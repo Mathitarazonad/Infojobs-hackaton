@@ -1,5 +1,5 @@
 'use client'
-import { useFilter } from '@/app/hooks/useFilter'
+import { useFilter } from '@/hooks/useFilter'
 import Contracts from './Contracts'
 import Languages from './Languages'
 import Modalities from './Modalities'

@@ -13,7 +13,8 @@ const initialFilterValues: EmployerFilters = {
   modality: 'any',
   contract: 'any',
   workday: 'undefined',
-  languages: []
+  languages: [],
+  status: 'searching'
 }
 
 const useValues = () => {

@@ -1,4 +1,4 @@
-import { useFilter } from '@/app/hooks/useFilter'
+import { useFilter } from '@/hooks/useFilter'
 import { IoClose } from 'react-icons/io5'
 
 export default function CloseFilter () {

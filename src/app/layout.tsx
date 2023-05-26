@@ -1,4 +1,4 @@
-import FilterProvider from './contexts/FilterContext'
+import FilterProvider from '../contexts/FilterContext'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 

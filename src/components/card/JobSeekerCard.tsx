@@ -3,7 +3,7 @@ import { FaSuitcase } from 'react-icons/fa/'
 import { BiTime } from 'react-icons/bi/'
 import { IoLocationSharp } from 'react-icons/io5/'
 import { BsBookmark } from 'react-icons/bs/'
-import { JobSeeker } from '@/app/types/seekersTypes'
+import { JobSeeker } from '@/types/seekersTypes'
 import JobSeekerStatus from './JobSeekerStatus'
 import CardImage from './CardImage'
 
