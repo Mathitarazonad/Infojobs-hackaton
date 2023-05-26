@@ -1,4 +1,4 @@
-import { Contract, JobModality, Language, Workday } from './types'
+import { Contract, JobModality, Language, PreviousEmployment, Workday } from './types'
 
 export interface JobSeeker {
   uid: string
