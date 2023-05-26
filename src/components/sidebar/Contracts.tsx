@@ -15,7 +15,7 @@ export default function Contracts () {
         <input type='radio' className='appearance-none border-2 border-gray-500 rounded-full p-1 checked:border-[3px] checked:border-sky-600' name='contract' value='full-time' id='full-time' onClick={() => handleClick(0)} />
         <label className='text-sm' htmlFor='full-time'>Full-time</label>
       </div>
-      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(1, selectedInput)}`} onClick={() => handleClick(1)}>
+      <div className={'flex gap-2 items-center' + `${checkForCheckedStyles(1, selectedInput)}`}>
         <input type='radio' className='appearance-none border-2 border-gray-500 rounded-full p-1 checked:border-[3px] checked:border-sky-600' name='contract' value='fixed-term' id='fixed-term' onClick={() => handleClick(1)} />
         <label className='text-sm' htmlFor='fixed-term'>Fixed-term</label>
       </div>

@@ -5,6 +5,7 @@ import Languages from './Languages'
 import Modalities from './Modalities'
 import Workdays from './Workdays'
 import CloseFilter from './CloseFilter'
+import Hired from './Hired'
 
 export default function Sidebar () {
   const { filterOpen } = useFilter()
@@ -16,6 +17,7 @@ export default function Sidebar () {
   return (
     <aside className={checkFilterState() + 'drop-shadow-lg md:flex md:static flex-col gap-4 bg-white md:min-w-[200px] md:max-w-[250px] p-3 px-4 rounded-lg z-10'}>
       <CloseFilter />
+      <Hired />
       <Modalities />
       <Contracts />
       <Workdays />
