@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import JobSeekerCard from './JobSeekerCard'
 import { useFirestore } from '@/hooks/useFirestore'
-import { JobSeeker } from '@/types/seekersTypes'
+import { JobSeeker } from '@/types/types.d.js'
 
 export default function JobSeekersList () {
   const { getAllDocuments } = useFirestore()

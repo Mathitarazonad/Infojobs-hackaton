@@ -1,9 +1,11 @@
 import { db } from '../database/firebase'
-import { getDocs, collection } from 'firebase/firestore'
-import { JobSeeker } from '../types/seekersTypes'
+import { getDocs, collection, setDoc, doc, addDoc } from 'firebase/firestore'
+import { JobSeeker } from '@/types/types.d.js'
+
+type CollectionType = 'jobs' | 'jobSeekerList'
 
 export const useFirestore = () => {
-  const getAllDocuments = async (collectionType: 'jobs' | 'jobSeekerList'): Promise<JobSeeker[]> => {
+  const getAllDocuments = async (collectionType: CollectionType): Promise<JobSeeker[]> => {
     const collectionRef = collection(db, collectionType)
     const querySnapshot = await getDocs(collectionRef)
     const documents: JobSeeker[] = []
@@ -12,5 +14,10 @@ export const useFirestore = () => {
     return documents
   }
 
-  return { getAllDocuments }
+  const addDocument = async (collectionType: CollectionType, document: JobSeeker) => {
+    const collectionRef = collection(db, `${collectionType}`)
+    await addDoc(collectionRef, document)
+  }
+
+  return { getAllDocuments, addDocument }
 }
