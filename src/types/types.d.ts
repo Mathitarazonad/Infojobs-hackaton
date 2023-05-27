@@ -33,13 +33,11 @@ export interface JobSeeker {
   yearsOfExperience: number
   email: string
   previousEmployments?: PreviousEmployment[]
-  phone: number
+  phone?: number
 }
 
 export interface Employer {
   email: string
-  password?: string
   fullname: string
   photoURL: string
-
 }
