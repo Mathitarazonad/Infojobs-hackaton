@@ -26,16 +26,16 @@ export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
         <h5 className='font-bold text-lg'>{fullname}</h5>
         <h6 className='font-semibold text-gray-900'>{role}</h6>
         <div className='flex justify-start items-center gap-1 text-sm text-neutral-900'>
-          <div className='flex items-center gap-[2px] md:gap-1 md:min-w-[90px]'>
+          <div className='flex items-center flex-1 gap-[2px] md:gap-1 md:flex-initial md:min-w-[90px]'>
             <FaSuitcase className='mb-[3px]' />
             {desiredContract}
           </div>
-          <div className='flex items-center gap-[2px] md:gap-1 md:min-w-[90px]'>
+          <div className='flex items-center flex-1 gap-[2px] md:gap-1 md:flex-initial md:min-w-[90px]'>
             <BiTime className='mb-[2px]' />
             {workday}
           </div>
-          <div className='flex items-center gap-[2px] md:gap-1 md:min-w-[90px]'>
-            <IoLocationSharp className='mb-[2px]' />
+          <div className='flex items-center flex-1 gap-[2px] md:gap-1 md:flex-initial md:min-w-[90px]'>
+            <IoLocationSharp className='mb-[2px] min-w-[14px]' />
             {city}
           </div>
         </div>
