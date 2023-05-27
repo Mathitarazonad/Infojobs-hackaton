@@ -16,7 +16,7 @@ export default function JobSeekersList () {
 
   if (jobSeekerList.length > 0) {
     return (
-      <ul className='w-full'>
+      <ul className='w-full flex flex-col gap-5'>
         {jobSeekerList.map(seeker => <JobSeekerCard data={seeker} key={seeker.uid} />)}
       </ul>
     )
