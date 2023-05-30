@@ -1,23 +1,39 @@
 import { db } from '../database/firebase'
-import { getDocs, collection, setDoc, doc, addDoc } from 'firebase/firestore'
-import { JobSeeker } from '@/types/types.d.js'
+import { getDocs, collection, setDoc, doc } from 'firebase/firestore'
+import { Employer, JobSeeker } from '@/types/types.d.js'
 
-type CollectionType = 'jobs' | 'jobSeekerList'
+type CollectionType = 'jobOffersList' | 'jobSeekerList' | 'employersList'
+type DocumentType = JobSeeker | Employer
 
 export const useFirestore = () => {
-  const getAllDocuments = async (collectionType: CollectionType): Promise<JobSeeker[]> => {
+  const getAllDocuments = async (collectionType: CollectionType) => {
     const collectionRef = collection(db, collectionType)
     const querySnapshot = await getDocs(collectionRef)
-    const documents: JobSeeker[] = []
-    querySnapshot.forEach(doc => documents.push(doc.data() as JobSeeker))
+
+    const documents: DocumentType[] = []
+    querySnapshot.forEach(doc => documents.push(doc.data() as DocumentType))
 
     return documents
   }
 
-  const addDocument = async (collectionType: CollectionType, document: JobSeeker) => {
-    const collectionRef = collection(db, `${collectionType}`)
-    await addDoc(collectionRef, document)
+  const addDocument = async (collectionType: CollectionType, document: DocumentType, documentUID: string) => {
+    const documentRef = doc(db, collectionType, documentUID)
+    await setDoc(documentRef, document)
   }
 
-  return { getAllDocuments, addDocument }
+  const checkIfEmailAlreadyExists = async (email: string) => {
+    const seekersCollection = collection(db, 'jobSeekerList')
+    const employersCollection = collection(db, 'employersList')
+
+    const [jobSeekers, employers] = await Promise.all([
+      getDocs(seekersCollection),
+      getDocs(employersCollection),
+    ])
+
+    const jobSeekerEmails = jobSeekers.docs.map((doc) => doc.data().email)
+    const employerEmails = employers.docs.map((doc) => doc.data().email)
+
+    return [...jobSeekerEmails, ...employerEmails].includes(email)
+  }
+  return { getAllDocuments, addDocument, checkIfEmailAlreadyExists }
 }
