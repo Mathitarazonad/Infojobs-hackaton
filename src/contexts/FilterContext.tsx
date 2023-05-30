@@ -10,7 +10,7 @@ export interface FilterContextTypes {
 }
 
 const initialFilterValues: EmployerFilters = {
-  modality: 'any',
+  modality: 'presential',
   contract: 'any',
   workday: 'undefined',
   languages: [],

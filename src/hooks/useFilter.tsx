@@ -1,9 +1,18 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FilterContext, FilterContextTypes } from '../contexts/FilterContext'
 import { EmployerFilters } from '../types/filterTypes'
 
 export const useFilter = () => {
   const { filterValues, filterOpen, setFilterValues, setFilterOpen } = useContext(FilterContext as React.Context<FilterContextTypes>)
+  const [selectedInput, setSelectedInput] = useState<number>(-1)
+
+  const changeSelectedInput = (value: number) => {
+    setSelectedInput(value)
+  }
+
+  const checkForCheckedStyles = (value: number, selectedInput: number): string => {
+    return value === selectedInput ? ' text-sky-600' : ''
+  }
 
   const changeFilterState = () => {
     setFilterOpen(prev => !prev)
@@ -22,5 +31,8 @@ export const useFilter = () => {
     filterOpen,
     changeFilterState,
     updateFilterValues,
+    selectedInput,
+    changeSelectedInput,
+    checkForCheckedStyles
   }
 }

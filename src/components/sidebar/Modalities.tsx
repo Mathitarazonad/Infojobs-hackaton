@@ -1,8 +1,8 @@
 'use client'
-import { useRadio } from '@/hooks/useRadio'
+import { useFilter } from '@/hooks/useFilter'
 
 export default function Modalities () {
-  const { selectedInput, changeSelectedInput, checkForCheckedStyles } = useRadio()
+  const { selectedInput, changeSelectedInput, checkForCheckedStyles } = useFilter()
 
   const handleClick = (value: number) => {
     changeSelectedInput(value)

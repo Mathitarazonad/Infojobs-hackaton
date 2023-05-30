@@ -1,6 +1,6 @@
 export type AppMode = 'EMPLOYER' | 'JOB_SEEKER'
 
-export type JobModality = 'presential' | 'hybrid' | 'remote'
+export type JobModality = 'presential' | 'hybrid' | 'remote' | 'any'
 
 export type Contract = 'full-time' | 'fixed-term' | 'any'
 
@@ -8,7 +8,7 @@ export type Workday = 'complete' | 'partial' | 'undefined'
 
 export type Language = 'english' | 'spanish' | 'french' | 'german'
 
-export type Status = 'searching' | 'hired'
+export type Status = 'searching' | 'hired' | 'any'
 export interface PreviousEmployment {
   company: string
   employmentRole: string
