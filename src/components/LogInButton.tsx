@@ -9,7 +9,6 @@ import { FaUserCircle } from 'react-icons/fa'
 export default function AuthButton () {
   const { logout, currentUser } = useAuth()
   const router = useRouter()
-  console.log(currentUser)
 
   const handleClick = async () => {
     if (currentUser !== null) {
@@ -22,9 +21,9 @@ export default function AuthButton () {
 
   return (
     <div className='text-[26px] flex items-center gap-1 text-white hover:scale-95 cursor-pointer relative' onClick={() => handleClick()}>
-      <p className='text-lg font-medium'>{currentUser !== null ? 'Log In' : 'Sign Out'}</p>
+      <p className='text-lg font-medium'>{currentUser !== null && currentUser !== undefined ? 'Sign Out' : 'Log in'}</p>
       {currentUser !== null && currentUser !== undefined && currentUser?.photoURL !== ''
-        ? <Image src={currentUser.photoURL as string} alt={currentUser.fullname + 'Profile Photo'} width={40} height={40} className='rounded-full object-cover absolute -right-13' />
+        ? <Image src={currentUser.photoURL as string} alt={currentUser.fullname + 'Profile Photo'} width={40} height={40} className='rounded-full object-cover w-[40px] h-[40px]' />
         : <FaUserCircle />}
     </div>
   )

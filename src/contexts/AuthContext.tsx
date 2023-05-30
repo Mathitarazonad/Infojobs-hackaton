@@ -5,17 +5,19 @@ import { useFirestore } from '@/hooks/useFirestore'
 import { Employer, JobSeeker } from '@/types/types'
 import { onAuthStateChanged } from 'firebase/auth'
 import { createContext, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 
 export interface AuthContextValues {
   currentUser: Employer | JobSeeker | null
   setCurrentUser: React.Dispatch<React.SetStateAction<Employer | JobSeeker | null>>
+  userChecked: boolean
+  setUserChecked: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const AuthContext = createContext<AuthContextValues | null>(null)
 
 export default function AuthProvider ({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<Employer | JobSeeker | null>(null)
+  const [userChecked, setUserChecked] = useState(false)
   const { getDocument } = useFirestore()
 
   useEffect(() => {
@@ -26,12 +28,13 @@ export default function AuthProvider ({ children }: { children: React.ReactNode 
       } else {
         setCurrentUser(null)
       }
+      setUserChecked(true)
     })
 
     return () => unsubscribe()
   }, [])
 
-  const values = { currentUser, setCurrentUser }
+  const values = { currentUser, setCurrentUser, userChecked, setUserChecked }
 
   return (
     <AuthContext.Provider value={values}>

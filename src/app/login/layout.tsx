@@ -1,3 +1,4 @@
+import AuthProtect from '@/contexts/AuthProtect'
 import FormProvider from '@/contexts/FormContext'
 import React from 'react'
 
@@ -7,8 +8,10 @@ export default function Layout ({
   children: React.ReactNode
 }) {
   return (
-    <FormProvider>
-      {children}
-    </FormProvider>
+    <AuthProtect isAuthRoute>
+      <FormProvider>
+        {children}
+      </FormProvider>
+    </AuthProtect>
   )
 }

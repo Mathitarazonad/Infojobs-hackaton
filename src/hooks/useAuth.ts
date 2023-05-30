@@ -1,3 +1,4 @@
+'use client'
 import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/database/firebase'
 import { useContext } from 'react'
@@ -5,7 +6,8 @@ import { AuthContext, AuthContextValues } from '@/contexts/AuthContext'
 import { FirestoreError } from 'firebase/firestore'
 
 export const useAuth = () => {
-  const { currentUser } = useContext(AuthContext) as AuthContextValues
+  const { currentUser, userChecked } = useContext(AuthContext) as AuthContextValues
+
   const createProfile = async (email: string, password: string) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password)
@@ -29,5 +31,5 @@ export const useAuth = () => {
     await signOut(auth)
   }
 
-  return { createProfile, signIn, logout, currentUser }
+  return { createProfile, signIn, logout, currentUser, userChecked }
 }

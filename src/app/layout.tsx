@@ -3,6 +3,7 @@ import FilterProvider from '../contexts/FilterContext'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import AuthProvider from '@/contexts/AuthContext'
+import AuthProtect from '@/contexts/AuthProtect'
 
 export const metadata = {
   title: 'Employer InfoJobs',
