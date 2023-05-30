@@ -10,7 +10,7 @@ export default function JobSeekersList () {
 
   useEffect(() => {
     getAllDocuments('jobSeekerList')
-      .then(all => setJobSeekerList(all))
+      .then(all => setJobSeekerList(all as JobSeeker[]))
       .catch(err => console.log(err))
   }, [])
 

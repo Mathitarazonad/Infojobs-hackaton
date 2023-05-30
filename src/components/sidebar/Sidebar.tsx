@@ -15,7 +15,7 @@ export default function Sidebar () {
   }
 
   return (
-    <aside className={checkFilterState() + 'drop-shadow-lg md:flex md:static flex-col gap-4 bg-white md:min-w-[200px] md:max-w-[250px] p-3 px-4 rounded-lg z-10'}>
+    <aside className={checkFilterState() + 'drop-shadow-lg md:flex md:static flex-col gap-4 bg-white md:min-w-[200px] md:max-w-[250px] p-3 px-4 rounded-lg z-10 max-h-[560px]'}>
       <CloseFilter />
       <Hired />
       <Modalities />

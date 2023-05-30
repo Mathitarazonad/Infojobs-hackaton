@@ -16,13 +16,28 @@ export const useFirestore = () => {
     return documents
   }
 
-  const getDocument = async (collectionType: CollectionType, getBy: string, value?: string): Promise<DocumentType> => {
-    const q = query(collection(db, collectionType), where(getBy, '==', value))
+  const getDocument = async (getBy: string, collectionType?: CollectionType, value?: string): Promise<DocumentType> => {
+    if (collectionType !== undefined) {
+      const q = query(collection(db, collectionType), where(getBy, '==', value))
 
-    const querySnapshot = await getDocs(q)
-    const document = querySnapshot.docs.map((doc) => doc.data())[0] as DocumentType
+      const querySnapshot = await getDocs(q)
+      const document = querySnapshot.docs.map((doc) => doc.data())[0] as DocumentType
 
-    return document
+      return document
+    }
+
+    const jobSeekersQuery = query(collection(db, 'jobSeekerList'), where(getBy, '==', value))
+    const employersQuery = query(collection(db, 'employersList'), where(getBy, '==', value))
+
+    const [jobSeekers, employers] = await Promise.all([
+      getDocs(jobSeekersQuery),
+      getDocs(employersQuery)]
+    )
+
+    const jobSeekersProfiles = jobSeekers.docs.map((doc) => doc.data())
+    const employersProfiles = employers.docs.map((doc) => doc.data())
+
+    return [...jobSeekersProfiles, ...employersProfiles][0] as DocumentType
   }
 
   const addDocument = async (collectionType: CollectionType, document: DocumentType, documentUID: string) => {
