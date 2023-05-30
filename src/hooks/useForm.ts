@@ -32,7 +32,7 @@ interface SecondFormStepTypes {
 
 interface ThirdFormStepTypes {
   jobModality: string
-  contract: string
+  desiredContract: string
   workday: string
   experienceYears: string
 }

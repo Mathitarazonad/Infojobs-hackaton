@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react'
 import { FiUpload } from 'react-icons/fi'
 
 export default function AvatarInput () {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)

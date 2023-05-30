@@ -7,7 +7,7 @@ const initialFieldValues = {
   experienceYears: '',
   jobModality: 'presential',
   workday: 'complete',
-  contract: 'full-time'
+  desiredContract: 'full-time'
 }
 
 export default function ThirdFormStep () {
@@ -27,15 +27,15 @@ export default function ThirdFormStep () {
         <div>
           <p>How do you want to work?</p>
           <div className='flex gap-1'>
-            <input type='radio' value='presential' id='presential' name='modality' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='presential' id='presential' name='jobModality' onChange={(e) => handleChange(e)} />
             <label htmlFor='presential'>Presential (default)</label>
           </div>
           <div className='flex gap-1'>
-            <input type='radio' value='hybrid' id='hybrid' name='modality' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='hybrid' id='hybrid' name='jobModality' onChange={(e) => handleChange(e)} />
             <label htmlFor='hybrid'>Hybrid</label>
           </div>
           <div className='flex gap-1'>
-            <input type='radio' value='remote' id='remote' name='modality' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='remote' id='remote' name='jobModality' onChange={(e) => handleChange(e)} />
             <label htmlFor='remote'>Remote</label>
           </div>
         </div>
@@ -57,15 +57,15 @@ export default function ThirdFormStep () {
         <div>
           <p>What type of contract would you like to have?</p>
           <div className='flex gap-1'>
-            <input type='radio' value='full-time' id='full-time' name='contract' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='full-time' id='full-time' name='desiredContract' onChange={(e) => handleChange(e)} />
             <label htmlFor='full-time'>Full-time (default)</label>
           </div>
           <div className='flex gap-1'>
-            <input type='radio' value='fixed-term' id='fixed-term' name='contract' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='fixed-term' id='fixed-term' name='desiredContract' onChange={(e) => handleChange(e)} />
             <label htmlFor='fixed-term'>Fixed-term</label>
           </div>
           <div className='flex gap-1'>
-            <input type='radio' value='any' id='any' name='contract' onChange={(e) => handleChange(e)} />
+            <input type='radio' value='any' id='any' name='desiredContract' onChange={(e) => handleChange(e)} />
             <label htmlFor='any'>Any</label>
           </div>
         </div>
