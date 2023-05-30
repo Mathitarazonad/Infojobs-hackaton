@@ -12,6 +12,9 @@ export interface EmployerRegisterValues extends Employer {
 
 export interface JobSeekerRegisterValues extends JobSeeker {
   password?: string
+  company?: string
+  employmentRole?: string
+  time?: string
 }
 
 interface FirstFormStepTypes {
@@ -47,7 +50,7 @@ interface LoginTypes {
 export type FieldValuesTypes = RegisterTypes | LoginTypes
 
 export const useForm = (initialFieldValues: FieldValuesTypes) => {
-  const { formStep, setFormStep, setAbleToSubmit } = useContext(FormContext) as FormContextType
+  const { formStep, setFormStep, setAbleToSubmit, ableToSubmit } = useContext(FormContext) as FormContextType
   const { checkIfEmailAlreadyExists } = useFirestore()
   const [fieldValues, setFieldValues] = useState(initialFieldValues)
   const [fieldErrors, setFieldErrors] = useState(Object.fromEntries(
@@ -87,9 +90,10 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
     PasswordTooShort: 'Password must be at least 6 characters long',
     EmailAlreadyInUse: 'Email is already in use',
     InvalidEmail: 'Email is not valid',
+    WrongPassword: 'Password is wrong'
   }
 
-  const checkErrors = async () => {
+  const checkErrors = async (isLogin = false) => {
     let isAnyError = false
 
     const emailIsValid = (email: string) => {
@@ -126,12 +130,11 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
         isAnyError = true
       }
 
-      if (await checkIfEmailAlreadyExists(emailValue)) {
+      if (await checkIfEmailAlreadyExists(emailValue) && !isLogin) {
         updateFieldErrors(emailType, errorMessages.EmailAlreadyInUse)
         isAnyError = true
       }
     }
-
     // Second Form Step
     if ('description' in fieldValues) {
       const descriptionType = 'description'
@@ -196,6 +199,19 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
     }
   }
 
+  const handleAuthErrors = (authError: string) => {
+    if (authError === 'auth/user-not-found') {
+      updateFieldErrors('email' as keyof FieldValuesTypes, 'Email is not valid')
+    }
+    if (authError === 'auth/wrong-password') {
+      updateFieldErrors('password' as keyof FieldValuesTypes, 'Password is wrong')
+    }
+    if (authError === 'auth/too-many-requests') {
+      updateFieldErrors('email' as keyof FieldValuesTypes, 'Too many tries')
+      updateFieldErrors('password' as keyof FieldValuesTypes, 'Too many tries')
+    }
+  }
+
   return {
     defaultInputGroupClass,
     formStep,
@@ -206,5 +222,7 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
     fieldErrors,
     updateFieldErrors,
     checkErrors,
+    handleAuthErrors,
+    ableToSubmit
   }
 }
