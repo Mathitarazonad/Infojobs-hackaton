@@ -1,5 +1,5 @@
 import { db } from '../database/firebase'
-import { getDocs, collection, setDoc, doc } from 'firebase/firestore'
+import { getDocs, collection, setDoc, doc, query, where } from 'firebase/firestore'
 import { Employer, JobSeeker } from '@/types/types.d.js'
 
 type CollectionType = 'jobOffersList' | 'jobSeekerList' | 'employersList'
@@ -14,6 +14,15 @@ export const useFirestore = () => {
     querySnapshot.forEach(doc => documents.push(doc.data() as DocumentType))
 
     return documents
+  }
+
+  const getDocument = async (collectionType: CollectionType, getBy: string, value?: string): Promise<DocumentType> => {
+    const q = query(collection(db, collectionType), where(getBy, '==', value))
+
+    const querySnapshot = await getDocs(q)
+    const document = querySnapshot.docs.map((doc) => doc.data())[0] as DocumentType
+
+    return document
   }
 
   const addDocument = async (collectionType: CollectionType, document: DocumentType, documentUID: string) => {
@@ -35,5 +44,5 @@ export const useFirestore = () => {
 
     return [...jobSeekerEmails, ...employerEmails].includes(email)
   }
-  return { getAllDocuments, addDocument, checkIfEmailAlreadyExists }
+  return { getAllDocuments, addDocument, checkIfEmailAlreadyExists, getDocument }
 }
