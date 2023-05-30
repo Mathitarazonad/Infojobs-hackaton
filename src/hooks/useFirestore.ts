@@ -2,11 +2,22 @@ import { db } from '../database/firebase'
 import { getDocs, collection, setDoc, doc, query, where } from 'firebase/firestore'
 import { Employer, JobSeeker } from '@/types/types.d.js'
 
-type CollectionType = 'jobOffersList' | 'jobSeekerList' | 'employersList'
-type DocumentType = JobSeeker | Employer
+export type CollectionType = 'jobOffersList' | 'jobSeekerList' | 'employersList'
+export type DocumentType = JobSeeker | Employer
 
 export const useFirestore = () => {
-  const getAllDocuments = async (collectionType: CollectionType) => {
+  const getAllDocuments = async (collectionType: CollectionType, filter?: string, filterValue?: string) => {
+    if (filter !== undefined) {
+      const q = query(collection(db, collectionType), where(filter, '==', filterValue))
+
+      const querySnapshot = await getDocs(q)
+
+      const documents: DocumentType[] = []
+      querySnapshot.forEach(doc => documents.push(doc.data() as DocumentType))
+
+      return documents
+    }
+
     const collectionRef = collection(db, collectionType)
     const querySnapshot = await getDocs(collectionRef)
 

@@ -3,6 +3,7 @@ import FilterProvider from '../contexts/FilterContext'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import AuthProvider from '@/contexts/AuthContext'
+import DocumentsProvider from '@/contexts/DocumentsContext'
 
 export const metadata = {
   title: 'Employer InfoJobs',
@@ -28,9 +29,11 @@ export default function RootLayout ({
       <body className={`${poppins.variable}` + ' bg-gray-100 font-poppins'}>
         <AppModeProvider>
           <AuthProvider>
-            <FilterProvider>
-              {children}
-            </FilterProvider>
+            <DocumentsProvider>
+              <FilterProvider>
+                {children}
+              </FilterProvider>
+            </DocumentsProvider>
           </AuthProvider>
         </AppModeProvider>
       </body>
