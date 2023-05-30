@@ -13,7 +13,7 @@ export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
   const capitalizeStr = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
   return (
-    <article className='drop-shadow-lg w-full min-w-[300px] bg-white p-2 md:p-4 lg:p-6 flex gap-3 rounded-lg hover:scale-95 duration-300'>
+    <article className='drop-shadow-lg w-full min-w-[300px] bg-white p-2 md:p-4 lg:p-6 flex gap-3 rounded-lg hover:scale-[99%] duration-300 cursor-pointer'>
       <CardImage src={photoURL as string} />
       <div className='flex flex-col gap-1 md:gap-[6px] w-full'>
         <div className='flex justify-between items-center'>
