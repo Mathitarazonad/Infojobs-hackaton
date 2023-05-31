@@ -13,8 +13,6 @@ export default async function JobSeekerPage ({ params }: Props) {
   const { getDocument } = useFirestore()
   const userData = await getDocument('uid', 'jobSeekerList', userUID) as JobSeeker
 
-  const padding = 'px-4 md:px-[50px] lg:px-[200px]'
-
   return (
     <>
       <Header />
