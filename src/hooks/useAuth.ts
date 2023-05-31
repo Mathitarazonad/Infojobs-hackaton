@@ -27,7 +27,6 @@ export const useAuth = () => {
   }
 
   const logout = async () => {
-    console.log('h')
     await signOut(auth)
   }
 

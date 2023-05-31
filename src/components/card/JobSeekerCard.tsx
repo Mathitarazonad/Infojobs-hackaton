@@ -6,14 +6,20 @@ import { BsBookmark } from 'react-icons/bs/'
 import { JobSeeker } from '@/types/types.d.js'
 import JobSeekerStatus from './JobSeekerStatus'
 import CardImage from './CardImage'
+import { useRouter } from 'next/navigation'
 
 export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
-  const { fullname, photoURL, city, jobModality, description, status, role, workday, desiredContract } = data
+  const { fullname, photoURL, city, jobModality, description, status, role, workday, desiredContract, uid } = data
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push(`/jobSeekers/${uid}`)
+  }
 
   const capitalizeStr = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
   return (
-    <article className='drop-shadow-lg w-full min-w-[300px] bg-white p-2 md:p-4 lg:p-6 flex gap-3 rounded-lg hover:scale-[99%] duration-300 cursor-pointer'>
+    <article className='drop-shadow-lg w-full min-w-[300px] bg-white p-2 md:p-4 lg:p-6 flex gap-3 rounded-lg hover:scale-[99%] duration-300 cursor-pointer' onClick={() => handleClick()}>
       <CardImage src={photoURL as string} />
       <div className='flex flex-col gap-1 md:gap-[6px] w-full'>
         <div className='flex justify-between items-center'>
