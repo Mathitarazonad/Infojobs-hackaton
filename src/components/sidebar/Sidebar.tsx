@@ -1,7 +1,6 @@
 'use client'
 import { useFilter } from '@/hooks/useFilter'
 import Contracts from './Contracts'
-import Languages from './Languages'
 import Modalities from './Modalities'
 import Workdays from './Workdays'
 import CloseFilter from './CloseFilter'
@@ -21,7 +20,6 @@ export default function Sidebar () {
       <Modalities />
       <Contracts />
       <Workdays />
-      <Languages />
     </aside>
   )
 }
