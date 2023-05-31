@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function WelcomeExamples () {
   return (
-    <section className='w-full bg-none min-h-screen p-5 sm:p-[50px] lg:px-[200px] text-center flex flex-col justify-center items-center gap-4'>
+    <section className='w-full bg-none min-h-screen p-5 sm:p-[50px] lg:px-[200px] text-center flex flex-col justify-center items-center gap-4 bg-white rounded-lg'>
       <div className='flex flex-col gap-4'>
         <h3 className='text-lg font-semibold sm:text-4xl md:text-5xl'>InfoJobs makes it easier for you to find people or jobs</h3>
         <p className='text-sm sm:text-base md:text-lg'> Users can create profiles, search for jobs, and apply easily. Employers can post job listings and find qualified candidates efficiently.</p>

@@ -16,6 +16,12 @@
   background-size: cover;
 }
 
+.jobSeeker_background {
+  background-image: url('/images/jobSeekerBackground.jpg');
+  background-position: bottom 20% center;
+  background-size: cover;
+}
+
 .blue_button {
   background-color:  rgb(2, 132, 199);
   color: white;

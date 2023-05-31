@@ -17,7 +17,7 @@ export default function AuthProtect ({ children, isAuthRoute = false }: AuthProt
     if (isAuthRoute && currentUser) {
       router.push('/')
     } else if (!currentUser && !isAuthRoute) {
-      router.push('/login')
+      router.push('/welcome')
     }
   }, [userChecked, currentUser])
 
