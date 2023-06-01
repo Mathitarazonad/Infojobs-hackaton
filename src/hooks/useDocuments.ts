@@ -5,7 +5,7 @@ import { JobSeeker } from '@/types/types'
 import { EmployerFilters } from '@/types/filterTypes'
 
 export const useDocuments = () => {
-  const { setDocuments, documents, initialDocuments } = useContext(DocumentsContext) as DocumentsContextValues
+  const { setDocuments, documents, initialDocuments, loadingDocuments, setLoadingDocuments } = useContext(DocumentsContext) as DocumentsContextValues
 
   const restartDocuments = () => {
     setDocuments(initialDocuments)
@@ -39,6 +39,8 @@ export const useDocuments = () => {
     restartDocuments,
     replaceDocuments,
     getDocumentsFiltered,
-    documents
+    documents,
+    loadingDocuments,
+    setLoadingDocuments
   }
 }

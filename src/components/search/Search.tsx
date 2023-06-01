@@ -7,7 +7,7 @@ import { JobSeeker } from '@/types/types'
 
 export default function Search () {
   const { getAllDocuments } = useFirestore()
-  const { replaceDocuments } = useDocuments()
+  const { replaceDocuments, setLoadingDocuments } = useDocuments()
   const { filterValues, needToFilter } = useFilter()
   const { getDocumentsFiltered } = useDocuments()
 
@@ -19,6 +19,8 @@ export default function Search () {
     const searchForm = { ...formValues }
     let documents: JobSeeker[]
 
+    setLoadingDocuments(true)
+
     if (searchForm.search !== '') {
       documents = await getAllDocuments('jobSeekerList', 'role', searchForm.search as string) as JobSeeker[]
     } else {
@@ -28,8 +30,8 @@ export default function Search () {
     if (needToFilter) {
       documents = await getDocumentsFiltered(filterValues, documents)
     }
-
     replaceDocuments(documents)
+    setLoadingDocuments(false)
   }
 
   return (

@@ -2,9 +2,20 @@
 import { JobSeeker } from '@/types/types'
 import JobSeekerCard from './JobSeekerCard'
 import { useDocuments } from '@/hooks/useDocuments'
+import MyLoader from './LoaderCard'
 
 export default function JobSeekersList () {
-  const { documents: jobSeekerList } = useDocuments()
+  const { documents: jobSeekerList, loadingDocuments } = useDocuments()
+
+  if (loadingDocuments) {
+    return (
+      <ul className='max-w-full flex flex-col gap-5'>
+        <MyLoader />
+        <MyLoader />
+        <MyLoader />
+      </ul>
+    )
+  }
 
   if (jobSeekerList.length > 0) {
     return (

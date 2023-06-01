@@ -5,6 +5,8 @@ import { Dispatch, SetStateAction, createContext, useState, useEffect } from 're
 
 export interface DocumentsContextValues {
   initialDocuments: DocumentType[]
+  loadingDocuments: boolean
+  setLoadingDocuments: Dispatch<SetStateAction<boolean>>
   documents: DocumentType[]
   setDocuments: Dispatch<SetStateAction<DocumentType[]>>
 }
@@ -14,9 +16,10 @@ export const DocumentsContext = createContext<DocumentsContextValues | null>(nul
 export default function DocumentsProvider ({ children }: { children: React.ReactNode }) {
   const [initialDocuments, setInitialDocuments] = useState<DocumentType[]>([])
   const [documents, setDocuments] = useState<DocumentType[]>([])
+  const [loadingDocuments, setLoadingDocuments] = useState(false)
   const { getAllDocuments } = useFirestore()
 
-  const values = { documents, setDocuments, initialDocuments }
+  const values = { documents, setDocuments, initialDocuments, loadingDocuments, setLoadingDocuments }
 
   useEffect(() => {
     getAllDocuments('jobSeekerList')
