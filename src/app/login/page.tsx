@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
+import { Ring } from '@uiball/loaders'
 import InputField from '@/components/register/InputField'
 import { EmployerRegisterValues, FieldValuesTypes, useForm } from '@/hooks/useForm'
 import { v4 as uuid } from 'uuid'
@@ -8,6 +9,7 @@ import Image from 'next/image'
 import { useAuth } from '@/hooks/useAuth'
 import { useAppMode } from '@/hooks/useAppMode'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const initialFieldValues = {
   email: '',
@@ -15,15 +17,18 @@ const initialFieldValues = {
 }
 
 export default function Page () {
-  const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors, ableToSubmit, handleAuthErrors } = useForm(initialFieldValues)
+  const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors, handleAuthErrors } = useForm(initialFieldValues)
   const { signIn } = useAuth()
   const { changeToEmployer } = useAppMode()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
     e.preventDefault()
-    await checkErrors(true)
 
-    if (!ableToSubmit) {
+    setIsSubmitting(true)
+
+    if (await checkErrors(true)) {
+      setIsSubmitting(false)
       return
     }
 
@@ -34,6 +39,7 @@ export default function Page () {
 
     const sign = await signIn(documentToAdd.email, documentToAdd.password as string)
     if (sign !== null) {
+      setIsSubmitting(false)
       handleAuthErrors(sign)
     }
   }
@@ -60,9 +66,9 @@ export default function Page () {
           <InputField labelText='Email' placeholder='Enter your email' id='email' inputType='email' handleChange={handleChange} errors={fieldErrors} />
           <InputField labelText='Password' placeholder='Enter your password' id='password' inputType='password' handleChange={handleChange} errors={fieldErrors} />
         </div>
-        <button type='submit' className='py-[6px] px-4 bg-sky-600 text-white'>
-          Sign in
-        </button>
+        {isSubmitting
+          ? <span className='py-[6px] px-4 bg-sky-600 text-white flex items-center gap-1'>Loading<Ring color='white' size={16} /></span>
+          : <button type='submit' className='blue_button !px-4'>Sign in</button>}
       </form>
     </div>
   )

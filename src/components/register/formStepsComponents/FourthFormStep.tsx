@@ -4,12 +4,13 @@ import { FieldValuesTypes, useForm } from '@/hooks/useForm'
 import InputField from '../InputField'
 import TechnologiesList from '../technologiesField/TechnologiesList'
 import Employment from '../employmentsField/Employment'
+import { Ring } from '@uiball/loaders'
 
 const initialFieldValues = {
   phone: ''
 }
 
-export default function FourthFormStep () {
+export default function FourthFormStep ({ isSubmitting }: { isSubmitting: boolean }) {
   const { groupClass, fieldErrors, updateFieldErrors, updateStepFields, goBackStep, checkErrors } = useForm(initialFieldValues)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,9 +30,9 @@ export default function FourthFormStep () {
         <button type='button' className='blue_button' onClick={() => goBackStep()}>
           Back
         </button>
-        <button type='submit' className='blue_button' onClick={() => checkErrors()}>
-          Create
-        </button>
+        {isSubmitting
+          ? <span className='py-[6px] px-4 bg-sky-600 text-white flex justify-center items-center gap-1'>Loading<Ring color='white' size={16} /></span>
+          : <button type='submit' className='blue_button' onClick={() => checkErrors()}>Create</button>}
       </div>
     </div>
   )

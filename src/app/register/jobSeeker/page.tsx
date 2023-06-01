@@ -8,7 +8,7 @@ import FirstFormStep from '@/components/register/formStepsComponents/FirstFormSt
 import SecondFormStep from '@/components/register/formStepsComponents/SecondFormStep'
 import ThirdFormStep from '@/components/register/formStepsComponents/ThirdFormStep'
 import FourthFormStep from '@/components/register/formStepsComponents/FourthFormStep'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FormContext, FormContextType } from '@/contexts/FormContext'
 import { v4 as uuid } from 'uuid'
 import { useAuth } from '@/hooks/useAuth'
@@ -22,11 +22,15 @@ export default function Page () {
   const { uploadImage, getImageURL } = useFirestorage()
   const { createProfile } = useAuth()
   const { changeToJobSeeker } = useAppMode()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
     e.preventDefault()
 
+    setIsSubmitting(true)
+
     if (formStep < 3 || !ableToSubmit) {
+      setIsSubmitting(false)
       return
     }
 
@@ -35,18 +39,21 @@ export default function Page () {
     const formValues = Object.fromEntries(formData.entries())
     const documentToAdd = { ...formValues, uid: uuid() } as JobSeekerRegisterValues
 
+    // If user uploaded an image, send to firestorage
     if ((documentToAdd.photoURL as File).name !== '') {
       await uploadImage(documentToAdd.photoURL as File, documentToAdd.uid)
       documentToAdd.photoURL = await getImageURL(documentToAdd.uid)
+    } else {
+      documentToAdd.photoURL = ''
     }
 
     documentToAdd.technologies = (documentToAdd.technologies as string).split(',')
 
+    // Convert to objects if user registered any previous employments
     if (documentToAdd.previousEmployments !== undefined) {
       documentToAdd.previousEmployments = JSON.parse(documentToAdd.previousEmployments as string)
-    } else {
-      documentToAdd.photoURL = ''
     }
+
     await createProfile(documentToAdd.email, documentToAdd.password as string)
 
     delete documentToAdd.password
@@ -69,7 +76,7 @@ export default function Page () {
         <FirstFormStep />
         <SecondFormStep />
         <ThirdFormStep />
-        <FourthFormStep />
+        <FourthFormStep isSubmitting={isSubmitting} />
       </form>
     </div>
   )

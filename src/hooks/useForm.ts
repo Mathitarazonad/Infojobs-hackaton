@@ -194,8 +194,10 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
         goNextStep()
       }
       setAbleToSubmit(true)
+      return false
     } else {
       setAbleToSubmit(false)
+      return true
     }
   }
 
@@ -205,6 +207,9 @@ export const useForm = (initialFieldValues: FieldValuesTypes) => {
     }
     if (authError === 'auth/wrong-password') {
       updateFieldErrors('password' as keyof FieldValuesTypes, 'Password is wrong')
+    }
+    if (authError === 'auth/email-already-in-use') {
+      updateFieldErrors('email' as keyof FieldValuesTypes, 'Email is already in use')
     }
     if (authError === 'auth/too-many-requests') {
       updateFieldErrors('email' as keyof FieldValuesTypes, 'Too many tries')

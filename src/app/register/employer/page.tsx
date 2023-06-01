@@ -11,6 +11,8 @@ import { useAuth } from '@/hooks/useAuth'
 import { useFirestorage } from '@/hooks/useFirestorage'
 import { useAppMode } from '@/hooks/useAppMode'
 import Link from 'next/link'
+import { useState } from 'react'
+import { Ring } from '@uiball/loaders'
 
 const initialFieldValues = {
   fullname: '',
@@ -20,17 +22,19 @@ const initialFieldValues = {
 
 export default function Page () {
   const { addDocument } = useFirestore()
-  const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors, ableToSubmit } = useForm(initialFieldValues)
+  const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors } = useForm(initialFieldValues)
   const { uploadImage, getImageURL } = useFirestorage()
   const { createProfile } = useAuth()
   const { changeToEmployer } = useAppMode()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
     e.preventDefault()
 
-    await checkErrors()
+    setIsSubmitting(true)
 
-    if (!ableToSubmit) {
+    if (await checkErrors()) {
+      setIsSubmitting(false)
       return
     }
 
@@ -81,9 +85,9 @@ export default function Page () {
           <InputField labelText='Email' placeholder='Enter your email' id='email' inputType='email' handleChange={handleChange} errors={fieldErrors} />
           <InputField labelText='Password' placeholder='Enter your password' id='password' inputType='password' handleChange={handleChange} errors={fieldErrors} />
         </div>
-        <button type='submit' className='py-[6px] px-4 bg-sky-600 text-white'>
-          Create
-        </button>
+        {isSubmitting
+          ? <span className='py-[6px] px-4 bg-sky-600 text-white flex items-center gap-1'>Loading<Ring color='white' size={16} /></span>
+          : <button type='submit' className='blue_button !px-4'>Sign in</button>}
       </form>
     </div>
   )
