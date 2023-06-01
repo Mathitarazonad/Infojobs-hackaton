@@ -25,5 +25,9 @@ export default function JobSeekersList () {
     )
   }
 
-  return null
+  return (
+    <div className='min-h-[200px] flex justify-center items-center w-full'>
+      <h2 className='text-2xl font-semibold text-gray-950 bg-white drop-shadow-lg rounded-lg p-14 md:p-20 text-center'>No results found</h2>
+    </div>
+  )
 }
