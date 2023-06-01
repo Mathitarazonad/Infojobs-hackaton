@@ -4,6 +4,7 @@ import { JobSeeker, PreviousEmployment } from '@/types/types'
 import { IoLocationSharp } from 'react-icons/io5'
 import Image from 'next/image'
 import AuthProtect from '@/contexts/AuthProtect'
+import Link from 'next/link'
 interface Props {
   params: {
     userUID: string
@@ -25,6 +26,7 @@ export default async function JobSeekerPage ({ params }: Props) {
       <div className='min-h-screen pt-[84px] pb-4 bg-gray-100 px-4'>
         <div className='flex flex-col items-center gap-5'>
           <div className='bg-white drop-shadow-lg p-6 rounded-lg flex flex-col gap-2 md:gap-3 relative max-w-xl'>
+            <Link href='/' type='button' className='text-sm text-gray-950 absolute top-6 right-6 font-semibold'>Back</Link>
             <div className='flex gap-5 items-center border-b-2 pb-5 border-gray-300'>
               <Image src={userData.photoURL !== '' ? userData.photoURL as string : '/images/defaultProfilePhoto.svg'} width={130} height={110} className='rounded-full object-cover min-w-[110px] w-[110px] h-[110px] md:w-[200px] md:h-[200px]' alt={userData.fullname + '\'s profile photo'} />
               <div>
