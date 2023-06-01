@@ -35,3 +35,7 @@
 .blue_button:hover {
   background-color: rgba(2, 133, 199, 0.564);
 }
+
+.app_paddings {
+  @apply sm:px-[50px] xl:px-[200px]
+}

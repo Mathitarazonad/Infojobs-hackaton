@@ -9,11 +9,11 @@ export default function Home () {
   return (
     <AuthProtect>
       <Header />
-      <main className='pt-[52px] md:flex flex-col justify-center md:pt-[82px] md:px-[50px] lg:px-[200px]'>
+      <main className='pt-[52px] md:flex flex-col justify-center md:pt-[82px] app_paddings'>
         <section className='w-full home_background h-[200px] flex items-center justify-center md:rounded-lg'>
           <Search />
         </section>
-        <div className='flex flex-col md:flex-row p-5 md:py-5 md:px-0 relative gap-3 md:gap-5'>
+        <div className='flex flex-col md:flex-row p-4 md:py-5 md:px-0 relative gap-3 md:gap-5'>
           <MobileFilterButton />
           <Sidebar />
           <EmployeeList />

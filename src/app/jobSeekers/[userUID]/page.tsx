@@ -3,6 +3,7 @@ import { useFirestore } from '@/hooks/useFirestore'
 import { JobSeeker, PreviousEmployment } from '@/types/types'
 import { IoLocationSharp } from 'react-icons/io5'
 import Image from 'next/image'
+import AuthProtect from '@/contexts/AuthProtect'
 interface Props {
   params: {
     userUID: string
@@ -19,7 +20,7 @@ export default async function JobSeekerPage ({ params }: Props) {
   const capitalizeStr = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
   return (
-    <>
+    <AuthProtect>
       <Header />
       <div className='min-h-screen pt-[84px] pb-4 bg-gray-100 px-4'>
         <div className='flex flex-col items-center gap-5'>
@@ -75,6 +76,6 @@ export default async function JobSeekerPage ({ params }: Props) {
           </div>
         </div>
       </div>
-    </>
+    </AuthProtect>
   )
 }
