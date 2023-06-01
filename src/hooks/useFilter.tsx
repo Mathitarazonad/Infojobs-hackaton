@@ -1,17 +1,12 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { FilterContext, FilterContextTypes } from '../contexts/FilterContext'
 import { EmployerFilters } from '../types/filterTypes'
 
 export const useFilter = () => {
-  const { filterValues, filterOpen, setFilterValues, setFilterOpen } = useContext(FilterContext as React.Context<FilterContextTypes>)
-  const [selectedInput, setSelectedInput] = useState<number>(-1)
+  const { filterValues, filterOpen, setFilterValues, setFilterOpen, needToFilter, setNeedToFilter } = useContext(FilterContext as React.Context<FilterContextTypes>)
 
-  const changeSelectedInput = (value: number) => {
-    setSelectedInput(value)
-  }
-
-  const checkForCheckedStyles = (value: number, selectedInput: number): string => {
-    return value === selectedInput ? ' text-sky-600' : ''
+  const checkForCheckedStyles = <K extends keyof EmployerFilters>(filterType: K, filterValue: EmployerFilters[K]): string => {
+    return filterValues[filterType] === filterValue ? ' text-sky-600' : ''
   }
 
   const changeFilterState = () => {
@@ -19,10 +14,16 @@ export const useFilter = () => {
   }
 
   const updateFilterValues = <T extends keyof EmployerFilters>(property: T, value: EmployerFilters[T]) => {
-    setFilterValues(prev => {
-      const newFilterValues = prev
-      newFilterValues[property] = value
-      return newFilterValues
+    setNeedToFilter(true)
+    setFilterValues(prev => ({ ...prev, [property]: value }))
+  }
+
+  const clearFilter = () => {
+    setFilterValues({
+      modality: '',
+      contract: '',
+      workday: '',
+      status: ''
     })
   }
 
@@ -31,8 +32,8 @@ export const useFilter = () => {
     filterOpen,
     changeFilterState,
     updateFilterValues,
-    selectedInput,
-    changeSelectedInput,
-    checkForCheckedStyles
+    checkForCheckedStyles,
+    needToFilter,
+    clearFilter
   }
 }

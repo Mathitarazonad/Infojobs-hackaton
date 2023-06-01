@@ -16,7 +16,7 @@ export default function AuthProtect ({ children, isAuthRoute = false }: AuthProt
   useEffect(() => {
     if (isAuthRoute && currentUser) {
       router.push('/')
-    } else if (!currentUser && !isAuthRoute) {
+    } else if (userChecked && !currentUser && !isAuthRoute) {
       router.push('/welcome')
     }
   }, [userChecked, currentUser])

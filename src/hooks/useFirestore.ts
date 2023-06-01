@@ -7,6 +7,10 @@ export type DocumentType = JobSeeker | Employer
 
 export const useFirestore = () => {
   const getAllDocuments = async (collectionType: CollectionType, filter?: string, filterValue?: string) => {
+    const shuffleArray = (array: DocumentType[]) => {
+      return array.sort(() => Math.random() - 0.5)
+    }
+
     if (filter !== undefined) {
       const q = query(collection(db, collectionType), where(filter, '==', filterValue))
 
@@ -15,7 +19,7 @@ export const useFirestore = () => {
       const documents: DocumentType[] = []
       querySnapshot.forEach(doc => documents.push(doc.data() as DocumentType))
 
-      return documents
+      return shuffleArray(documents)
     }
 
     const collectionRef = collection(db, collectionType)
@@ -24,7 +28,7 @@ export const useFirestore = () => {
     const documents: DocumentType[] = []
     querySnapshot.forEach(doc => documents.push(doc.data() as DocumentType))
 
-    return documents
+    return shuffleArray(documents)
   }
 
   const getDocument = async (getBy: string, collectionType?: CollectionType, value?: string): Promise<DocumentType> => {
