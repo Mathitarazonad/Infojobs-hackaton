@@ -1,12 +1,12 @@
 
+import { JobSeeker } from '@/types/types.d.js'
+import { useRouter } from 'next/navigation'
 import { FaSuitcase } from 'react-icons/fa/'
 import { BiTime } from 'react-icons/bi/'
 import { IoLocationSharp } from 'react-icons/io5/'
 import { BsBookmark } from 'react-icons/bs/'
-import { JobSeeker } from '@/types/types.d.js'
 import JobSeekerStatus from './JobSeekerStatus'
-import CardImage from './CardImage'
-import { useRouter } from 'next/navigation'
+import CardImage from '../card/CardImage'
 
 export default function JobSeekerCard ({ data }: { data: JobSeeker }) {
   const { fullname, photoURL, city, jobModality, description, status, role, workday, desiredContract, uid } = data

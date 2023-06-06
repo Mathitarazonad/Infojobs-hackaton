@@ -1,8 +1,8 @@
 'use client'
 import { JobSeeker } from '@/types/types'
-import JobSeekerCard from './JobSeekerCard'
 import { useDocuments } from '@/hooks/useDocuments'
-import CardLoader from './CardLoader'
+import CardLoader from '../card/CardLoader'
+import JobSeekerCard from './JobSeekerCard'
 
 export default function JobSeekersList () {
   const { documents: jobSeekerList, loadingDocuments } = useDocuments()
