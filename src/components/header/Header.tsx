@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import LogInButton from '../LogInButton'
+import LogInButton from './LogInButton'
 
 export default function Header () {
   return (
