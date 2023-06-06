@@ -41,4 +41,27 @@ export interface Employer {
   fullname: string
   photoURL: string | File
   userType: AppMode
+  publishedOffers: JobOffer[]
+}
+
+export interface JobOffer {
+  jobOffer: string
+  company: string
+  location: string
+  photoURL: string | File
+  offerPublicationDate: string
+  experienceYears: number
+  jobDescription: string
+  jobModality: JobModality
+  contract: Contract
+  workday: Workday
+  workTimes: undefined | {
+    from: string
+    to: string
+  }
+  minStudies: undefined | string
+  peopleInscribed: number
+  usersInscribed: string[]
+  salary: undefined | string
+  closed: boolean
 }
