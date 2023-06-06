@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 import { auth } from '@/database/firebase'
+import { useAppMode } from '@/hooks/useAppMode'
 import { useFirestore } from '@/hooks/useFirestore'
 import { Employer, JobSeeker } from '@/types/types'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -19,15 +20,18 @@ export default function AuthProvider ({ children }: { children: React.ReactNode 
   const [currentUser, setCurrentUser] = useState<Employer | JobSeeker | null>(null)
   const [userChecked, setUserChecked] = useState(false)
   const { getDocument } = useFirestore()
+  const { changeAppMode } = useAppMode()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user !== null) {
         const userData = await getDocument('email', undefined, user?.email as string)
         setCurrentUser(userData)
+        changeAppMode(userData.userType)
       } else {
         setCurrentUser(null)
       }
+
       setUserChecked(true)
     })
 

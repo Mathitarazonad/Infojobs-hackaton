@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
-import InputField from '@/components/register/InputField'
-import { useFirestore } from '@/hooks/useFirestore'
-import { EmployerRegisterValues, FieldValuesTypes, useForm } from '@/hooks/useForm'
-import { v4 as uuid } from 'uuid'
 import Image from 'next/image'
+import Link from 'next/link'
+import InputField from '@/components/register/InputField'
 import AvatarInput from '@/components/register/AvatarInput'
+import { Ring } from '@uiball/loaders'
+import { useFirestore } from '@/hooks/useFirestore'
 import { useAuth } from '@/hooks/useAuth'
 import { useFirestorage } from '@/hooks/useFirestorage'
-import { useAppMode } from '@/hooks/useAppMode'
-import Link from 'next/link'
 import { useState } from 'react'
-import { Ring } from '@uiball/loaders'
+import { EmployerRegisterValues, FieldValuesTypes, useForm } from '@/hooks/useForm'
+import { v4 as uuid } from 'uuid'
 
 const initialFieldValues = {
   fullname: '',
@@ -25,7 +24,6 @@ export default function Page () {
   const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors } = useForm(initialFieldValues)
   const { uploadImage, getImageURL } = useFirestorage()
   const { createProfile } = useAuth()
-  const { changeToEmployer } = useAppMode()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
@@ -38,10 +36,9 @@ export default function Page () {
       return
     }
 
-    changeToEmployer()
     const formData = new FormData(e.target as HTMLFormElement)
     const formValues = Object.fromEntries(formData.entries())
-    const documentToAdd = { ...formValues, uid: uuid() } as EmployerRegisterValues
+    const documentToAdd = { ...formValues, uid: uuid(), userType: 'EMPLOYER' } as EmployerRegisterValues
 
     if ((documentToAdd.photoURL as File).name !== '') {
       await uploadImage(documentToAdd.photoURL as File, documentToAdd.uid)

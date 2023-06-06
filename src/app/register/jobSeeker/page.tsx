@@ -2,26 +2,24 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import Image from 'next/image'
-import { useFirestore } from '@/hooks/useFirestore'
 import FormSteps from '@/components/register/FormStepsProgress'
 import FirstFormStep from '@/components/register/formStepsComponents/FirstFormStep'
 import SecondFormStep from '@/components/register/formStepsComponents/SecondFormStep'
 import ThirdFormStep from '@/components/register/formStepsComponents/ThirdFormStep'
 import FourthFormStep from '@/components/register/formStepsComponents/FourthFormStep'
+import { useFirestore } from '@/hooks/useFirestore'
 import { useContext, useState } from 'react'
-import { FormContext, FormContextType } from '@/contexts/FormContext'
-import { v4 as uuid } from 'uuid'
+import { useFirestorage } from '@/hooks/useFirestorage'
 import { useAuth } from '@/hooks/useAuth'
 import { JobSeekerRegisterValues } from '@/hooks/useForm'
-import { useFirestorage } from '@/hooks/useFirestorage'
-import { useAppMode } from '@/hooks/useAppMode'
+import { FormContext, FormContextType } from '@/contexts/FormContext'
+import { v4 as uuid } from 'uuid'
 
 export default function Page () {
   const { formStep, ableToSubmit } = useContext(FormContext) as FormContextType
   const { addDocument } = useFirestore()
   const { uploadImage, getImageURL } = useFirestorage()
   const { createProfile } = useAuth()
-  const { changeToJobSeeker } = useAppMode()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
@@ -34,10 +32,9 @@ export default function Page () {
       return
     }
 
-    changeToJobSeeker()
     const formData = new FormData(e.target as HTMLFormElement)
     const formValues = Object.fromEntries(formData.entries())
-    const documentToAdd = { ...formValues, uid: uuid() } as JobSeekerRegisterValues
+    const documentToAdd = { ...formValues, uid: uuid(), userType: 'JOB_SEEKER' } as JobSeekerRegisterValues
 
     // If user uploaded an image, send to firestorage
     if ((documentToAdd.photoURL as File).name !== '') {

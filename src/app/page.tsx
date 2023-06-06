@@ -1,5 +1,5 @@
 import Header from '@/components/Header'
-import EmployeeList from '@/components/card/JobSeekersList'
+import JobSeekerList from '@/components/card/JobSeekerList'
 import Search from '@/components/search/Search'
 import MobileFilterButton from '@/components/sidebar/MobileFilterButton'
 import Sidebar from '@/components/sidebar/Sidebar'
@@ -16,7 +16,7 @@ export default function Home () {
         <div className='flex flex-col md:flex-row p-4 md:py-5 md:px-0 relative gap-3 md:gap-5'>
           <MobileFilterButton />
           <Sidebar />
-          <EmployeeList />
+          <JobSeekerList />
         </div>
       </main>
     </AuthProtect>
