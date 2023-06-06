@@ -1,5 +1,5 @@
 import Header from '@/components/Header'
-import JobSeekerList from '@/components/card/JobSeekerList'
+import JobSeekerList from '@/components/jobSeekers/JobSeekerList'
 import Search from '@/components/search/Search'
 import MobileFilterButton from '@/components/sidebar/MobileFilterButton'
 import Sidebar from '@/components/sidebar/Sidebar'
