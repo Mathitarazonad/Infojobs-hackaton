@@ -10,7 +10,7 @@ export default function JobSeekersList () {
   if (loadingDocuments) {
     return (
       <ul className='w-full flex flex-col gap-5'>
-        {Array(6).map((e, i) => <CardLoader key={i} />)}
+        {Array(6).fill('').map((e, i) => <CardLoader key={i} />)}
       </ul>
     )
   }
