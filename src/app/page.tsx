@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+import Header from '@/components/header/Header'
 import JobSeekerList from '@/components/jobSeekers/JobSeekerList'
 import Search from '@/components/search/Search'
 import MobileFilterButton from '@/components/sidebar/MobileFilterButton'

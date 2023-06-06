@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+import Header from '@/components/header/Header'
 import { useFirestore } from '@/hooks/useFirestore'
 import { JobSeeker, PreviousEmployment } from '@/types/types'
 import { IoLocationSharp } from 'react-icons/io5'
