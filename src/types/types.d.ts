@@ -42,6 +42,7 @@ export interface Employer {
   photoURL: string | File
   userType: AppMode
   publishedOffers: JobOffer[]
+  favorites: JobSeeker[]
 }
 
 export interface JobOffer {
