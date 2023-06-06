@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
-import { Ring } from '@uiball/loaders'
-import InputField from '@/components/register/InputField'
-import { EmployerRegisterValues, FieldValuesTypes, useForm } from '@/hooks/useForm'
-import { v4 as uuid } from 'uuid'
-import Image from 'next/image'
-import { useAuth } from '@/hooks/useAuth'
-import { useAppMode } from '@/hooks/useAppMode'
-import Link from 'next/link'
 import { useState } from 'react'
+import { v4 as uuid } from 'uuid'
+import Link from 'next/link'
+import Image from 'next/image'
+import InputField from '@/components/register/InputField'
+import { Ring } from '@uiball/loaders'
+import { EmployerRegisterValues, FieldValuesTypes, useForm } from '@/hooks/useForm'
+import { useAuth } from '@/hooks/useAuth'
 
 const initialFieldValues = {
   email: '',
@@ -19,7 +18,6 @@ const initialFieldValues = {
 export default function Page () {
   const { fieldErrors, updateFieldErrors, updateStepFields, checkErrors, handleAuthErrors } = useForm(initialFieldValues)
   const { signIn } = useAuth()
-  const { changeToEmployer } = useAppMode()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
@@ -32,7 +30,6 @@ export default function Page () {
       return
     }
 
-    changeToEmployer()
     const formData = new FormData(e.target as HTMLFormElement)
     const formValues = Object.fromEntries(formData.entries())
     const documentToAdd = { ...formValues, uid: uuid() } as EmployerRegisterValues
