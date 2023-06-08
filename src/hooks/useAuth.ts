@@ -30,5 +30,7 @@ export const useAuth = () => {
     await signOut(auth)
   }
 
-  return { createProfile, signIn, logout, currentUser, userChecked }
+  const userIsLoged = () => currentUser !== null && currentUser !== undefined
+
+  return { createProfile, signIn, logout, currentUser, userChecked, userIsLoged }
 }
