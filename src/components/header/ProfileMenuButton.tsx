@@ -10,6 +10,7 @@ import MobileMenu from './MobileMenu'
 import { useAuth } from '@/hooks/useAuth'
 import Link from 'next/link'
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io'
+import { FaUserCircle } from 'react-icons/fa'
 
 export default function AuthButton () {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,18 +23,19 @@ export default function AuthButton () {
   return (
     <>
       <div className='text-[26px] flex items-center gap-1 text-white cursor-pointer relative' onClick={() => handleClick()}>
-        <div>
-          {!isOpen && <HiOutlineMenu className='md:hidden' fontSize={28} />}
-        </div>
-        {!userIsLoged() && <Link href='/login' className='text-lg font-medium hover:scale-105'>Sign in</Link>}
-        {userIsLoged() &&
+        <Link href='/login' className='flex items-center gap-2 hover:scale-105'>
+          {!userIsLoged() && <FaUserCircle fontSize={30} />}
+          {(!isOpen && userIsLoged()) && <HiOutlineMenu className='md:hidden' fontSize={28} />}
+          {!userIsLoged() && <p className='text-lg font-medium'>Sign in</p>}
+        </Link>
+        {(userIsLoged() && currentUser?.photoURL) &&
         <div className='flex items-center'>
           <Image
             width={60}
             height={60}
-            className='hidden md:block rounded-full w-[40px] min-w-[40px] h-[40px] bg-white object-cover hover:scale-95'
-            src={currentUser?.photoURL !== '' ? currentUser?.photoURL as string : 'images/defaultProfilePhoto.svg'}
-            alt={currentUser?.fullname as string + 'profile photo' || 'Default profile photo'}
+            className='hidden md:block rounded-full w-[40px] min-w-[40px] h-[40px] object-cover hover:scale-95'
+            src={currentUser?.photoURL as string}
+            alt={currentUser?.fullname + 'profile photo' || 'Default profile photo'}
           />
           {isOpen
             ? <IoMdArrowDropup className='hidden md:block hover:font-semibold' fontSize={28} />
