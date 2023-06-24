@@ -28,7 +28,7 @@ export default function InputField ({ labelText, placeholder, id, inputType = 't
       </div>
       {inputType === 'textarea'
         ? <textarea placeholder={placeholder} id={id} rows={3} name={id} className={getInputStyle(id)} onChange={handleChange} />
-        : <input placeholder={placeholder} id={id} type={inputType} name={id} className={getInputStyle(id)} onChange={handleChange} />}
+        : <input placeholder={placeholder} id={id} type={inputType} name={id} className={getInputStyle(id)} onChange={handleChange} min={0} />}
       {errors[id] !== '' && <p className={'text-red-600 text-sm absolute' + (inputType === 'textarea' ? ' bottom-[-22px]' : 'bottom-[-15px]')}>{errors[id]}</p>}
     </div>
   )

@@ -25,14 +25,14 @@ export default async function JobSeekerPage ({ params }: Props) {
       <Header />
       <div className='min-h-screen pt-[84px] pb-4 bg-gray-100 px-4'>
         <div className='flex flex-col items-center gap-5'>
-          <div className='bg-white drop-shadow-lg p-6 rounded-lg flex flex-col gap-2 md:gap-3 relative max-w-xl'>
-            <Link href='/' type='button' className='text-sm text-gray-950 absolute top-6 right-6 font-semibold'>Back</Link>
+          <div className='bg-white drop-shadow-lg p-4 rounded-lg flex flex-col gap-2 md:gap-3 relative max-w-xl w-full'>
+            <Link href='/' type='button' className='text-sm text-gray-950 absolute top-3 right-4 font-semibold'>Back</Link>
             <div className='flex gap-5 items-center border-b-2 pb-5 border-gray-300'>
               <Image src={userData.photoURL !== '' ? userData.photoURL as string : '/images/defaultProfilePhoto.svg'} width={130} height={110} className='rounded-full object-cover min-w-[110px] w-[110px] h-[110px] md:w-[200px] md:h-[200px]' alt={userData.fullname + '\'s profile photo'} />
-              <div>
-                <h1 className='text-3xl font-bold'>{userData.fullname}</h1>
-                <h2 className='text-2xl font-semibold text-gray-950'>{userData.role}</h2>
-                <h3 className='text-xl font-semibold text-gray-950 flex items-center'>
+              <div className='flex flex-col gap-1'>
+                <h1 className='text-2xl md:text-3xl font-bold'>{userData.fullname}</h1>
+                <h2 className='text-xl md:text-2xl font-semibold text-gray-950'>{userData.role}</h2>
+                <h3 className='text-lg md:text-xl font-semibold text-gray-950 flex items-center'>
                   <IoLocationSharp />{userData.city}
                 </h3>
               </div>
@@ -70,10 +70,10 @@ export default async function JobSeekerPage ({ params }: Props) {
                     </li>)}
                 </ul>
               </>}
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 max-w-full'>
               <h4 className='text-lg font-bold border-b-2 border-gray-300'>Contact</h4>
-              <p className='flex gap-1'><span className='font-bold'>Email: </span>{userData.email}</p>
-              <p className='flex gap-1'><span className='font-bold'>Phone: </span>{userData.phone}</p>
+              <p className='gap-1'><span className='font-bold'>Email: </span>{userData.email}</p>
+              <p className='gap-1'><span className='font-bold'>Phone: </span>{userData.phone}</p>
             </div>
           </div>
         </div>
